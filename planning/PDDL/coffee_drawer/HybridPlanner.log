@@ -1,0 +1,1478 @@
+2026-02-23 19:34:23,404 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 19:34:23,440 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:34:46,780 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:35:38,785 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-container
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:36:08,055 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:36:30,391 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:37:07,434 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:37:07,434 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 2 votes.
+2026-02-23 19:37:07,435 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e53548ced90> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:37:07,482 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 19:37:07,534 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 19:37:07,534 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:37:07,617 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:37:20,581 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:37:20,581 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:38:42,770 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:38:42,770 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:38:54,597 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:38:54,597 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:38:54,597 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 19:38:54,598 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544af6b3a0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:38:54,635 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 19:38:54,650 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 19:38:54,650 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:38:54,726 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:39:42,384 - INFO - LLM proposed operator candidate added to counter: (:action dump-item-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (free ?gripper))
+)
+2026-02-23 19:39:54,468 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:39:54,468 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:40:35,207 - INFO - LLM proposed operator candidate added to counter: (:action dump-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (free ?gripper))
+)
+2026-02-23 19:40:56,122 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:40:56,123 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:41:08,418 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:41:08,419 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:41:08,419 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 19:41:08,419 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544af7c4c0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:41:08,468 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 19:41:08,487 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 19:41:08,487 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:41:08,576 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:41:27,111 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:41:27,112 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:41:42,720 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:41:42,720 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:41:52,939 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:41:52,939 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:41:52,939 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 19:41:52,939 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544b000280> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:41:52,995 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 19:41:53,008 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 19:41:53,008 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:41:53,088 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 19:42:17,619 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:42:32,255 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:42:48,547 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:43:09,228 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (open ?drawer) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:43:25,689 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:43:25,689 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 19:43:25,690 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544af3d070> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 19:43:25,753 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 19:43:25,817 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 19:43:25,818 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:43:25,911 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 19:43:38,902 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:43:48,805 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:44:03,922 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-pod-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:44:03,922 - INFO - Ended up proposing the candidate operator (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 19:44:03,923 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544af2a5b0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 19:44:03,989 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 19:44:04,025 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544af2a5b0>. 1 goal states found.
+2026-02-23 19:44:04,026 - INFO - Plan found [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 19:44:04,142 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 19:44:04,504 - INFO - Time taken for iteration 1: 581.0994346141815 seconds.
+2026-02-23 19:44:04,558 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 19:44:04,588 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:44:27,381 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:44:52,489 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:45:15,373 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 19:45:42,934 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:45:42,935 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 19:45:42,935 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae4aa90> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:45:42,984 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 19:45:43,046 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 19:45:43,047 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:45:43,143 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:46:07,306 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:46:07,306 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:47:13,662 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:47:47,658 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:47:47,659 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:48:15,820 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:48:15,820 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:48:15,820 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 19:48:15,820 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae67f70> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:48:15,857 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 19:48:15,871 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 19:48:15,871 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:48:15,949 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:50:07,980 - INFO - LLM proposed operator candidate added to counter: (:action take-pod-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 19:51:26,204 - INFO - LLM proposed operator candidate added to counter: (:action dump-item-from-open-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 19:52:45,872 - INFO - LLM proposed operator candidate added to counter: (:action pour-item-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 19:52:54,188 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:52:54,189 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:54:05,671 - INFO - LLM proposed operator candidate added to counter: (:action dump-item-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table) (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)))
+)
+2026-02-23 19:54:05,671 - INFO - Ended up proposing the candidate operator (:action dump-item-from-open-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+) with 2 votes.
+2026-02-23 19:54:05,672 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aed1b50> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'dump-item-from-open-drawer-onto-table']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:54:05,715 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'dump-item-from-open-drawer-onto-table']). # expanded: 0, # goals: 0.
+2026-02-23 19:54:05,757 - INFO - Goal found after 30 expansions from node <planning.planning_utils.SearchNode object at 0x7e544aed1b50>. 1 goal states found.
+2026-02-23 19:54:05,757 - INFO - Plan found [open-drawer(drawer1, gripper1, table1), dump-item-from-open-drawer-onto-table(coffee-pod1, drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-tabletop(coffee-pod1, table1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 19:54:05,835 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1, table1), dump-item-from-open-drawer-onto-table(coffee-pod1, drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-tabletop(coffee-pod1, table1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 19:54:06,140 - INFO - Time taken for iteration 2: 601.5812432765961 seconds.
+2026-02-23 19:54:06,198 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 19:54:06,231 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:54:39,303 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:55:24,605 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer-on-table
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:55:54,005 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:56:26,335 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 19:56:26,335 - INFO - Ended up proposing the candidate operator (:action open-drawer-on-table
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 19:56:26,336 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ad30f70> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 19:56:26,398 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # expanded: 0, # goals: 0.
+2026-02-23 19:56:26,467 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 19:56:26,467 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:56:26,546 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:57:33,557 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (open ?drawer))
+)
+2026-02-23 19:58:04,465 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:58:04,465 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:58:53,022 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:58:53,022 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:59:23,445 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 19:59:23,445 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 19:59:23,446 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 19:59:23,446 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ade5e50> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 19:59:23,505 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 19:59:23,516 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 19:59:23,516 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 19:59:23,586 - INFO - Asking LLM for new operator from node [open-drawer-on-table(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:01:02,608 - INFO - LLM proposed operator candidate added to counter: (:action dump-pod-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 20:02:17,403 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:02:47,076 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:02:47,076 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:03:11,386 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:03:11,386 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:03:29,198 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:03:29,198 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:03:29,198 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:03:29,199 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ad30dc0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:03:29,246 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # expanded: 0, # goals: 0.
+2026-02-23 20:03:29,263 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 20:03:29,263 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:03:29,344 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:04:04,941 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:04:04,942 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:04:48,547 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:04:48,547 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:04:57,110 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:04:57,110 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:04:57,110 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:04:57,111 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ade7fd0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:04:57,145 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 20:04:57,150 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 20:04:57,150 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:04:57,219 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:05:23,415 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:06:09,514 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:06:49,187 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:07:37,090 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:07:37,091 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:07:37,092 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544acd55e0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:07:37,136 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:07:37,167 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 20:07:37,167 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:07:37,247 - INFO - Asking LLM for new operator from node [open-drawer-on-table(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:08:19,608 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:08:43,183 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:09:08,824 - INFO - LLM proposed operator candidate added to counter: (:action retrieve-object-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:09:08,824 - INFO - Ended up proposing the candidate operator (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 20:09:08,825 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae0f040> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table', 'pick-up-from-open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:09:08,901 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer-on-table', 'pick-up-from-open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:09:08,939 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544ae0f040>. 1 goal states found.
+2026-02-23 20:09:08,939 - INFO - Plan found [open-drawer-on-table(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 20:09:09,038 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer-on-table(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 20:09:09,426 - INFO - Time taken for iteration 3: 903.2281672954559 seconds.
+2026-02-23 20:09:09,490 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 20:09:09,522 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:09:48,832 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:10:33,706 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:11:10,404 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:11:48,487 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:11:48,488 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:11:48,488 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e5354965b50> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:11:48,544 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:11:48,607 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 20:11:48,608 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:11:48,687 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:13:01,460 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:14:47,140 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:16:18,152 - INFO - LLM proposed operator candidate added to counter: (:action push-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:16:18,152 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:16:18,153 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535c00c790> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:16:18,217 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:16:18,303 - INFO - Search space exhausted. # expanded: 38, # goals: 0.
+2026-02-23 20:16:18,304 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:16:18,383 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:18:16,129 - INFO - LLM proposed operator candidate added to counter: (:action dump-coffee-pod-from-drawer-onto-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 20:18:52,006 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:18:52,007 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:19:01,242 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:19:01,243 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:19:55,976 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:19:55,976 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:19:55,976 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:19:55,976 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e5354907670> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:19:56,047 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:19:56,086 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 20:19:56,087 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:19:56,183 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:20:46,114 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:20:46,115 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:21:23,385 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:21:23,385 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:22:09,910 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:22:09,910 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:22:09,911 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:22:09,911 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bc8df70> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:22:09,962 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 20:22:09,974 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 20:22:09,974 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:22:10,078 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), open-drawer(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:23:37,516 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-pod-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 20:26:08,865 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-pod-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 20:28:21,221 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:28:21,221 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:29:19,462 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:29:19,463 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:30:35,772 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-pod-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 20:30:35,772 - INFO - Ended up proposing the candidate operator (:action pick-up-pod-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+) with 3 votes.
+2026-02-23 20:30:35,773 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e5354900cd0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-pod-from-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:30:35,842 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-pod-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:30:35,880 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e5354900cd0>. 1 goal states found.
+2026-02-23 20:30:35,881 - INFO - Plan found [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), open-drawer(drawer1, gripper1, table1), pick-up-pod-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 20:30:35,973 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), open-drawer(drawer1, gripper1, table1), pick-up-pod-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 20:30:36,311 - INFO - Time taken for iteration 4: 1286.8217437267303 seconds.
+2026-02-23 20:30:36,370 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 20:30:36,403 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:31:58,808 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (open ?drawer) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:33:09,990 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:34:33,943 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:35:51,638 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:37:11,969 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer-from-table
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:37:11,969 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:37:11,970 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf6e6d0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:37:12,020 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:37:12,079 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 20:37:12,080 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:37:12,156 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:37:44,875 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:37:44,875 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:38:59,721 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer-on-table
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:39:46,880 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:39:46,880 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:40:37,090 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:40:37,090 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:40:37,091 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:40:37,091 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf50d60> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:40:37,148 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 20:40:37,176 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 20:40:37,176 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:40:37,271 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:41:12,840 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:41:12,840 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:42:17,510 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 20:42:52,853 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:42:52,853 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:44:33,066 - INFO - LLM proposed operator candidate added to counter: (:action pick-pod-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 20:45:55,401 - INFO - LLM proposed operator candidate added to counter: (:action dump-item-from-drawer-to-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 20:45:55,402 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 2 votes.
+2026-02-23 20:45:55,402 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf50370> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:45:55,472 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:45:55,507 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 20:45:55,507 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:45:55,607 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:46:28,325 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:46:28,325 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:46:46,841 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:46:46,842 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:47:10,003 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:47:10,003 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:47:10,003 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:47:10,004 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae8ba00> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:47:10,059 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 20:47:10,066 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 20:47:10,067 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:47:10,152 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:47:51,355 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:48:31,600 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:49:02,814 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:49:02,814 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:49:02,815 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf4de20> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:49:02,875 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:49:02,909 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 20:49:02,909 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:49:02,987 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:49:37,219 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:50:05,737 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:50:30,906 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 20:50:30,907 - INFO - Ended up proposing the candidate operator (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 20:50:30,908 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bede070> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 20:50:30,982 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:50:31,013 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e535bede070>. 1 goal states found.
+2026-02-23 20:50:31,013 - INFO - Plan found [open-drawer(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 20:50:31,107 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1, table1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-open-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 20:50:31,461 - INFO - Time taken for iteration 5: 1195.0910937786102 seconds.
+2026-02-23 20:50:31,526 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 20:50:31,560 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:51:10,068 - INFO - LLM proposed operator candidate added to counter: (:action take-pod-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (open ?drawer) (not (in ?coffee-pod ?drawer)) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)))
+)
+2026-02-23 20:51:40,068 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:52:23,124 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:53:05,120 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:53:05,120 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 20:53:05,121 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aeacac0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 20:53:05,185 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:53:05,247 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 20:53:05,248 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:53:05,352 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:53:55,582 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:53:55,582 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:54:19,973 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:54:19,973 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:55:22,428 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 20:55:56,101 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:55:56,101 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:55:56,101 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:55:56,102 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aeef9a0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:55:56,155 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 20:55:56,182 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 20:55:56,182 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:55:56,281 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:56:15,395 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:56:15,395 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:57:01,958 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:57:01,958 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:57:37,416 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:57:37,417 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 20:57:37,417 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 20:57:37,417 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae47430> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:57:37,478 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 20:57:37,512 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 20:57:37,513 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 20:57:37,603 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 20:58:09,356 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 20:58:09,356 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:00:04,488 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:00:04,489 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:00:21,245 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:00:21,245 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:00:21,245 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:00:21,245 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bfb95e0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:00:21,286 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 21:00:21,293 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 21:00:21,294 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:00:21,381 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:00:55,430 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:01:26,125 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:02:16,195 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:03:07,455 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:03:07,455 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 21:03:07,456 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aed8d00> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:03:07,523 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:03:07,582 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 21:03:07,583 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:03:07,672 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:03:33,269 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:03:50,222 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:04:09,347 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:04:09,347 - INFO - Ended up proposing the candidate operator (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 21:04:09,348 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf9c430> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:04:09,420 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:04:09,457 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e535bf9c430>. 1 goal states found.
+2026-02-23 21:04:09,458 - INFO - Plan found [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 21:04:09,554 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 21:04:09,940 - INFO - Time taken for iteration 6: 818.4139583110809 seconds.
+2026-02-23 21:04:09,998 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 21:04:10,032 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:04:30,634 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:04:30,635 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:04:53,566 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:05:30,162 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:06:05,163 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:06:34,086 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:06:34,086 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 2 votes.
+2026-02-23 21:06:34,087 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e53581bbd60> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:06:34,149 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:06:34,215 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 21:06:34,216 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:06:34,305 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:07:35,029 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:08:01,592 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:08:01,592 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:09:17,313 - INFO - LLM proposed operator candidate added to counter: (:action push-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:09:55,538 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:09:55,538 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:10:59,167 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:10:59,167 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:10:59,168 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:10:59,168 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ae3d1c0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:10:59,230 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 21:10:59,257 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 21:10:59,258 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:10:59,355 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:11:19,262 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:11:19,262 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:11:47,415 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:11:47,415 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:13:21,279 - INFO - LLM proposed operator candidate added to counter: (:action dump-pod-from-drawer-to-table
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (directly-on-table ?coffee-pod ?table)) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (not (in ?coffee-pod ?drawer)) (directly-on-table ?coffee-pod ?table))
+)
+2026-02-23 21:13:56,610 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:13:56,611 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:13:56,611 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:13:56,611 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bf9c340> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:13:56,674 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:13:56,708 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 21:13:56,709 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:13:56,804 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:14:08,624 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:14:08,625 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:14:34,580 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:14:34,580 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:14:49,957 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:14:49,957 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:14:49,957 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:14:49,958 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544acd9ca0> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:14:50,011 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 21:14:50,024 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 21:14:50,024 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:14:50,133 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:15:07,363 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:15:17,223 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:15:46,859 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (open ?drawer) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:16:05,892 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:16:20,143 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:16:20,143 - INFO - Ended up proposing the candidate operator (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 21:16:20,144 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aee3910> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pull-open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:16:20,210 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pull-open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:16:20,250 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 21:16:20,251 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:16:20,334 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:16:33,206 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:16:56,002 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:17:10,758 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:17:10,758 - INFO - Ended up proposing the candidate operator (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 21:17:10,759 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544acfd220> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:17:10,823 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:17:10,857 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544acfd220>. 1 goal states found.
+2026-02-23 21:17:10,858 - INFO - Plan found [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 21:17:10,961 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 21:17:11,324 - INFO - Time taken for iteration 7: 781.3263583183289 seconds.
+2026-02-23 21:17:11,381 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 21:17:11,422 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:17:28,664 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:17:44,798 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:18:01,522 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (open ?drawer) (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:18:17,973 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:18:33,570 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:18:33,570 - INFO - Ended up proposing the candidate operator (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 2 votes.
+2026-02-23 21:18:33,570 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544acc9d60> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pick-up-from-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:18:33,625 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pick-up-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:18:33,657 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544acc9d60>. 1 goal states found.
+2026-02-23 21:18:33,657 - INFO - Plan found [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 21:18:33,754 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 21:18:34,016 - INFO - Time taken for iteration 8: 82.63540124893188 seconds.
+2026-02-23 21:18:34,075 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 21:18:34,107 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:18:50,625 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:19:05,352 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:19:21,977 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:19:21,978 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 21:19:21,978 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ac54700> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:19:22,035 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:19:22,095 - INFO - Search space exhausted. # expanded: 31, # goals: 0.
+2026-02-23 21:19:22,095 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:19:22,183 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:19:55,576 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:20:20,582 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer-on-table
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:20:44,777 - INFO - LLM proposed operator candidate added to counter: (:action slide-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (open ?drawer))
+)
+2026-02-23 21:21:05,475 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:21:05,475 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:21:42,642 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (open ?drawer))
+)
+2026-02-23 21:21:42,642 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (free ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (not (free ?gripper)) (open ?drawer))
+) with 1 votes.
+2026-02-23 21:21:42,643 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544accdc10> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:21:42,710 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:21:42,770 - INFO - Search space exhausted. # expanded: 20, # goals: 0.
+2026-02-23 21:21:42,770 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:21:42,858 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:22:00,535 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:22:00,536 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:22:22,996 - INFO - LLM proposed operator candidate added to counter: (:action retrieve-pod-from-held-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (exclusively-occupying-gripper ?drawer ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (free ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (in ?coffee-pod ?drawer)) (not (free ?gripper)))
+)
+2026-02-23 21:22:29,691 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:22:29,691 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:22:38,622 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:22:38,622 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:22:38,622 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:22:38,622 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544accdd90> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:22:38,696 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(drawer1,gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:22:38,735 - INFO - Search space exhausted. # expanded: 13, # goals: 0.
+2026-02-23 21:22:38,735 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:22:38,829 - INFO - Asking LLM for new operator from node [pick-up-from-tabletop(mug1, table1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:22:45,370 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:22:45,371 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:22:53,861 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:22:53,861 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:23:05,886 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:23:05,887 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:23:05,887 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:23:05,887 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bcabd30> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -1, # expanded: 0, # goals: 0.
+2026-02-23 21:23:05,926 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), exclusively-occupying-gripper(mug1,gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # expanded: 0, # goals: 0.
+2026-02-23 21:23:05,931 - INFO - Search space exhausted. # expanded: 5, # goals: 0.
+2026-02-23 21:23:05,931 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:23:06,011 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), open-drawer(drawer1, gripper1, table1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:23:20,494 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:23:20,494 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:23:30,218 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:23:30,218 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:23:52,758 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:23:52,759 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:23:52,759 - INFO - Ended up proposing the candidate operator (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+) with 3 votes.
+2026-02-23 21:23:52,759 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e535bccf910> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:23:52,811 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), exclusively-occupying-gripper(lid1,gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:23:52,836 - INFO - Search space exhausted. # expanded: 10, # goals: 0.
+2026-02-23 21:23:52,836 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:23:52,918 - INFO - Asking LLM for new operator from node [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:24:24,233 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:24:48,317 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:25:21,615 - INFO - LLM proposed operator candidate added to counter: (:action pull-open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:25:21,615 - INFO - Ended up proposing the candidate operator (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+) with 3 votes.
+2026-02-23 21:25:21,616 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ac61250> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:25:21,677 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-down(lid1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(coffee-pod-holder1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:25:21,734 - INFO - Search space exhausted. # expanded: 24, # goals: 0.
+2026-02-23 21:25:21,734 - INFO - Did not find a plan via search ahead. Expanding the node further.
+2026-02-23 21:25:21,821 - INFO - Asking LLM for new operator from node [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:25:41,164 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:26:01,949 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:26:24,830 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-open-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:26:24,830 - INFO - Ended up proposing the candidate operator (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (open ?drawer) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 3 votes.
+2026-02-23 21:26:24,831 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544ac6d940> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # votes: -2, # expanded: 0, # goals: 0.
+2026-02-23 21:26:24,874 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'open-drawer', 'pick-up-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:26:24,891 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544ac6d940>. 1 goal states found.
+2026-02-23 21:26:24,892 - INFO - Plan found [open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 21:26:24,974 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-drawer(drawer1, gripper1), free-gripper-from-object-and-return-to-neutral(drawer1, gripper1), open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 21:26:25,355 - INFO - Time taken for iteration 9: 471.28000378608704 seconds.
+2026-02-23 21:26:25,413 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 21:26:25,446 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:26:47,290 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:27:01,314 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:27:18,692 - INFO - LLM did not propose an operator. Skipping.
+2026-02-23 21:27:18,692 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and )
+	:effect (and )
+)
+2026-02-23 21:27:45,261 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+)
+2026-02-23 21:28:01,737 - INFO - LLM proposed operator candidate added to counter: (:action open-drawer
+	:parameters (?drawer - drawer ?gripper - gripper ?table - table)
+	:precondition (and (directly-on-table ?drawer ?table) (free ?gripper) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)))
+	:effect (and (exclusively-occupying-gripper ?drawer ?gripper) (not (free ?gripper)) (open ?drawer))
+)
+2026-02-23 21:28:01,738 - INFO - Ended up proposing the candidate operator (:action pick-up-from-drawer
+	:parameters (?coffee-pod - coffee-pod ?drawer - drawer ?gripper - gripper)
+	:precondition (and (free ?gripper) (in ?coffee-pod ?drawer) (not (exclusively-occupying-gripper ?coffee-pod ?gripper)) (not (exclusively-occupying-gripper ?drawer ?gripper)) (not (open ?drawer)) (not (small-enough-for-gripper-to-pick-up ?drawer ?gripper)) (small-enough-for-gripper-to-pick-up ?coffee-pod ?gripper))
+	:effect (and (exclusively-occupying-gripper ?coffee-pod ?gripper) (not (free ?gripper)) (not (in ?coffee-pod ?drawer)))
+) with 2 votes.
+2026-02-23 21:28:01,739 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7e544aaf2790> with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pick-up-from-drawer']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 21:28:01,808 - INFO - Searching ahead from node Model[attached(lid1,coffee-pod-holder1), can-flip-up(lid1), directly-on-table(drawer1,table1), directly-on-table(mug1,table1), free(gripper1), in(coffee-pod1,drawer1), open(mug1), small-enough-for-gripper-to-pick-up(coffee-pod-holder1,gripper1), small-enough-for-gripper-to-pick-up(coffee-pod1,gripper1), small-enough-for-gripper-to-pick-up(mug1,gripper1), under(mug1,coffee-pod-holder1), upright(mug1)] with available actions: odict_keys(['pick-up-from-tabletop', 'open-coffee-pod-holder', 'close-coffee-pod-holder', 'free-gripper-from-object-and-return-to-neutral', 'place-pod-in-holder-from-gripper', 'place-mug-under-holder-from-gripper', 'pick-up-from-drawer']). # expanded: 0, # goals: 0.
+2026-02-23 21:28:01,843 - INFO - Goal found after 17 expansions from node <planning.planning_utils.SearchNode object at 0x7e544aaf2790>. 1 goal states found.
+2026-02-23 21:28:01,843 - INFO - Plan found [open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]
+2026-02-23 21:28:01,938 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[open-coffee-pod-holder(coffee-pod-holder1, lid1, gripper1), free-gripper-from-object-and-return-to-neutral(lid1, gripper1), pick-up-from-drawer(coffee-pod1, drawer1, gripper1), place-pod-in-holder-from-gripper(coffee-pod1, coffee-pod-holder1, gripper1)]].
+2026-02-23 21:28:02,216 - INFO - Time taken for iteration 10: 96.80311965942383 seconds.

@@ -1,0 +1,285 @@
+2026-02-23 17:54:45,953 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 17:54:45,987 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 17:55:32,439 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:56:04,016 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:56:37,740 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:56:37,740 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 17:56:37,741 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c559e735280> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 17:56:37,810 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 17:56:37,824 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c559e735280>. 1 goal states found.
+2026-02-23 17:56:37,825 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 17:56:37,934 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 17:56:38,196 - INFO - Time taken for iteration 1: 112.24309229850769 seconds.
+2026-02-23 17:56:38,236 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 17:56:38,268 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 17:57:30,842 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:57:59,859 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:58:46,201 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:58:46,201 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 17:58:46,202 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692cf3280> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 17:58:46,250 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 17:58:46,259 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692cf3280>. 1 goal states found.
+2026-02-23 17:58:46,259 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 17:58:46,355 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 17:58:46,652 - INFO - Time taken for iteration 2: 128.41577339172363 seconds.
+2026-02-23 17:58:46,691 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 17:58:46,720 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 17:59:06,105 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 17:59:47,533 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:00:10,090 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:00:10,090 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:00:10,090 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692c5a5e0> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:00:10,137 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:00:10,145 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692c5a5e0>. 1 goal states found.
+2026-02-23 18:00:10,145 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:00:10,231 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:00:10,480 - INFO - Time taken for iteration 3: 83.78817677497864 seconds.
+2026-02-23 18:00:10,526 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:00:10,561 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:00:45,396 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:01:37,667 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:02:18,289 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:02:18,289 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:02:18,289 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692bda4f0> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:02:18,329 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:02:18,334 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692bda4f0>. 1 goal states found.
+2026-02-23 18:02:18,334 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:02:18,412 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:02:18,690 - INFO - Time taken for iteration 4: 128.16323852539062 seconds.
+2026-02-23 18:02:18,736 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:02:18,769 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:02:47,713 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:03:19,630 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:04:34,122 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:04:34,123 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:04:34,123 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692be4370> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:04:34,171 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:04:34,175 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692be4370>. 1 goal states found.
+2026-02-23 18:04:34,175 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:04:34,251 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:04:34,500 - INFO - Time taken for iteration 5: 135.76410031318665 seconds.
+2026-02-23 18:04:34,545 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:04:34,578 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:05:08,436 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:05:51,527 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:06:26,060 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:06:26,060 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:06:26,060 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692bc2e50> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:06:26,101 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:06:26,106 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692bc2e50>. 1 goal states found.
+2026-02-23 18:06:26,107 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:06:26,190 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:06:26,473 - INFO - Time taken for iteration 6: 111.92840313911438 seconds.
+2026-02-23 18:06:26,522 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:06:26,555 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:06:44,754 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:07:37,912 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:08:00,745 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:08:00,745 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:08:00,746 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692af10d0> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:08:00,785 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:08:00,795 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692af10d0>. 1 goal states found.
+2026-02-23 18:08:00,795 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:08:00,876 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:08:01,150 - INFO - Time taken for iteration 7: 94.62816143035889 seconds.
+2026-02-23 18:08:01,391 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:08:01,427 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:08:42,902 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:09:44,410 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:10:26,707 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:10:26,708 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:10:26,708 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692bc2dc0> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:10:26,754 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:10:26,762 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692bc2dc0>. 1 goal states found.
+2026-02-23 18:10:26,762 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:10:26,848 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:10:27,098 - INFO - Time taken for iteration 8: 145.7070164680481 seconds.
+2026-02-23 18:10:27,134 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:10:27,164 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:10:58,607 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:11:48,190 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:12:37,396 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:12:37,397 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:12:37,397 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c5692d698e0> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:12:37,443 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:12:37,447 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c5692d698e0>. 1 goal states found.
+2026-02-23 18:12:37,447 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:12:37,529 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:12:37,818 - INFO - Time taken for iteration 9: 130.68385314941406 seconds.
+2026-02-23 18:12:37,859 - INFO - Starting search with HybridSymbolicLLMPlanner.
+2026-02-23 18:12:37,893 - INFO - Asking LLM for new operator from node [] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:12:59,484 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:13:33,615 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:14:28,048 - INFO - LLM proposed operator candidate added to counter: (:action 
+	:parameters ()
+	:precondition (and ())
+	:effect (and ())
+)
+2026-02-23 18:14:53,619 - INFO - LLM proposed operator candidate added to counter: (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+)
+2026-02-23 18:14:53,620 - INFO - Ended up proposing the candidate operator (:action pick-up-nut-from-peg
+	:parameters (?gripper - gripper ?round-peg - round-peg ?square-nut - square-nut)
+	:precondition (and (free ?gripper) (not (exclusively-occupying-gripper ?round-peg ?gripper)) (not (exclusively-occupying-gripper ?square-nut ?gripper)) (not (shapes-match ?square-nut ?round-peg)) (not (small-enough-for-gripper-to-pick-up ?round-peg ?gripper)) (on-peg ?square-nut ?round-peg) (small-enough-for-gripper-to-pick-up ?square-nut ?gripper))
+	:effect (and (exclusively-occupying-gripper ?square-nut ?gripper) (not (free ?gripper)) (not (on-peg ?square-nut ?round-peg)))
+) with 3 votes.
+2026-02-23 18:14:53,620 - INFO - searching ahead from node <planning.planning_utils.SearchNode object at 0x7c55a5b2bc70> with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # votes: 0, # expanded: 0, # goals: 0.
+2026-02-23 18:14:53,678 - INFO - Searching ahead from node Model[directly-on-table(round-nut1,table1), directly-on-table(round-peg1,table1), directly-on-table(square-peg1,table1), free(gripper1), on-peg(round-nut1,round-peg1), on-peg(square-nut1,round-peg1), shapes-match(round-nut1,round-peg1), shapes-match(square-nut1,square-peg1), small-enough-for-gripper-to-pick-up(round-nut1,gripper1), small-enough-for-gripper-to-pick-up(square-nut1,gripper1)] with available actions: odict_keys(['pick-up-nut-from-tabletop', 'put-nut-on-peg', 'pick-up-nut-from-peg']). # expanded: 0, # goals: 0.
+2026-02-23 18:14:53,689 - INFO - Goal found after 5 expansions from node <planning.planning_utils.SearchNode object at 0x7c55a5b2bc70>. 1 goal states found.
+2026-02-23 18:14:53,690 - INFO - Plan found [pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]
+2026-02-23 18:14:53,788 - INFO - Minimum number of plans found. # plans: 1, # expanded: 0, # goals: 1. Plans found: [[pick-up-nut-from-peg(gripper1, round-peg1, square-nut1), put-nut-on-peg(square-nut1, square-peg1, gripper1)]].
+2026-02-23 18:14:54,106 - INFO - Time taken for iteration 10: 136.24674344062805 seconds.

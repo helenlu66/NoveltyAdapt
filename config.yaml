@@ -1,0 +1,151 @@
+# config.yaml
+vlm_agent:
+  api_key: "your_api_key"
+  model: "o3" 
+  temperature: 0.3
+code_agent:
+  api_key: "your_api_key"
+  model: "o4-mini"
+  temperature: 1.0
+# seting for image observation
+image_path: "images/agent_view.jpg"
+
+execution_dir: "execution"
+learning_dir: "learning"
+detection_dir: "detection"
+
+plan_learn_execute:
+  max_iter: 100
+
+simulation:
+  robots: "Kinova3"
+  has_renderer: False
+  has_offscreen_renderer: False
+  use_camera_obs: False
+  control_freq: 20
+  reward_shaping: True
+  ignore_done: True
+
+# simulation environment setup for the evaluation of the RL policy during training. Parameters are the same as the simulation environment setup for the RL training above except for `has_renderer`
+eval_simulation:
+  robots: "Kinova3"
+  has_renderer: False
+  has_offscreen_renderer: False
+  use_camera_obs: False
+  control_freq: 20
+  reward_shaping: True
+  ignore_done: True
+
+# parameters for RL
+learning:
+  PPO:
+    batch_size: 64 # default 64. The n_steps taken per VectorEnv will be divided into `batch_size` minibatches for training the policy
+    gamma: 0.99 # default
+    learning_rate: 0.0003 # default
+    verbose: 1
+    n_steps: 2048 #default 2048, make sure this is smaller than or equal to `timesteps_per_iter` below. Otherwise this will take precedence. The agent will take `n_steps` steps in the environment per VectorEnv before updating the policy.
+    policy_kwargs:
+      net_arch:
+        pi: [64, 64] # default [64, 64]
+        vf: [64, 64] # default [64, 64]
+    seed: 0 # 0 by default unless overwriten by command line argument
+  SAC:
+    batch_size: 256 # default
+    buffer_size: 1_000_000 # not for PPO
+    gamma: 0.99 # default
+    learning_rate: 0.0003
+    learning_starts: 1000 # default 10000
+    verbose: 1
+    policy_kwargs:
+      net_arch: [256, 256] # [256, 256]
+    tau: 0.005 # default
+    seed: 0 # 0 by default unless overwriten by command line argument
+  # DDPG:
+  #   batch_size: 100 # default
+  #   buffer_size: 1000000 # default
+  #   gamma: 0.99 # default
+  #   learning_rate: 0.001 # default
+  #   learning_starts: 100 # default
+  #   verbose: 1
+  #   policy_kwargs:
+  #     net_arch: [400, 300] # default [400, 300]
+  #   tau: 0.005 # default
+  #   action_noise: "OrnsteinUhlenbeckActionNoise" # default
+  #   action_noise_kwargs:
+  #     mean: 0.0
+  #     sigma: 0.2
+  #     theta: 0.15
+  #     dt: 0.01
+  #   seed: 0 # 0 by default unless overwriten by command line argument
+  eval:
+    eval_freq: 20_000
+    n_eval_episodes: 20
+    deterministic: True
+    render: False # if True, make sure `render_mode` below is set to "human" and `eval_simulation` above is set up with `has_renderer` as True
+    render_mode: "human"
+    verbose: 1
+  learn_subgoal:
+    total_timesteps: 1_000_000 # the subgoal reward function candidate is capped at this many timesteps per subgoal
+    timesteps_per_iter: 200_000 # each subgoal reward function candidate is trained for this many timesteps and then compared to other candidates for elimination
+  reward_shaping_fn:
+    num_candidates: 3
+  
+
+planning:
+  coffee_box:
+    planning_dir: "planning/PDDL/coffee_box"
+    domain: "coffee_box"
+    init_planning_domain: "coffee_box_domain.pddl" # the initial domain file
+    modified_planning_domain: "modified_coffee_box_domain.pddl" # final domain file will be saved as this
+    planning_problem: "coffee_box_problem.pddl" # the partially defined planning problem file
+    planning_goal_node: "goal_node_iter0_goal1.pkl" # the pickled file name for the goal node
+    novel_objects: ["box1"]
+    num_op_candidates: 5
+    max_new_operators_branching_factor: 1 # prompt the llm this many times in each state for a new operator
+    max_num_llm_calls: 60
+    max_depth: 15 # maximum search depth
+    min_plan_candidates: 1 # end search early if this many plans are found
+  coffee_drawer:
+    planning_dir: "planning/PDDL/coffee_drawer"
+    domain: "coffee_drawer"
+    init_planning_domain: "coffee_drawer_domain.pddl" # the initial domain file
+    modified_planning_domain: "modified_coffee_drawer_domain.pddl" # final domain file will be saved as this
+    planning_problem: "coffee_drawer_problem.pddl" # the partially defined planning problem file
+    planning_goal_node: "goal_node_iter0_goal1.pkl" # the pickled file name for the goal node
+    novel_objects: ["drawer1"]
+    num_op_candidates: 5
+    max_new_operators_branching_factor: 1 # prompt the llm this many times in each state for a new operator
+    max_num_llm_calls: 60
+    max_depth: 15 # maximum search depth
+    min_plan_candidates: 1 # end search early if this many plans are found
+  nut_assembly:
+    planning_dir: "planning/PDDL/nut_assembly"
+    domain: "nut_assembly"
+    init_planning_domain: "nut_assembly_domain.pddl" # the initial domain file
+    modified_planning_domain: "modified_nut_assembly_domain.pddl" # final domain file will be saved as this
+    planning_problem: "nut_assembly_problem.pddl" # the partially defined planning problem file
+    planning_goal_node: "goal_node_iter0_goal1.pkl" # the pickled file name for the goal node
+    novel_objects: ["round-peg1"]
+    num_op_candidates: 5
+    max_new_operators_branching_factor: 1 # prompt the llm this many times in each state for a new operator
+    max_num_llm_calls: 30
+    max_depth: 4 # maximum search depth
+    min_plan_candidates: 1 # end search early if this many plans are found
+  kitchen:
+    planning_dir: "planning/PDDL/kitchen"
+    domain: "kitchen"
+    init_planning_domain: "kitchen_domain.pddl" # the initial domain file
+    modified_planning_domain: "modified_kitchen_domain.pddl" # final domain file will be saved as this
+    planning_problem: "kitchen_problem.pddl" # the partially defined planning problem file
+    planning_goal_node: "goal_node_iter0_goal1.pkl" # the pickled file name for the goal node
+    novel_objects: ["lid1"]
+    num_op_candidates: 5
+    max_new_operators_branching_factor: 1 # prompt the llm this many times in each state for a new operator
+    max_num_llm_calls: 30
+    max_depth: 10 # maximum search depth
+    min_plan_candidates: 1 # end search early if this many plans are found
+
+
+logging: # TODO: enable this
+  level: "INFO"
+  file: "vlm_agent.log"

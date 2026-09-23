@@ -1,0 +1,879 @@
+import os
+import dill
+import yaml
+import copy
+import detection.detector
+import planning.planning_utils
+import json
+import re
+import copy
+import importlib
+import numpy as np
+import subprocess
+import base64
+import pandas as pd
+from typing import *
+from PIL import Image
+from langchain.tools import tool
+from robosuite.controllers import load_controller_config
+from robosuite.utils.input_utils import *
+from robosuite.environments.base import MujocoEnv
+from robosuite.wrappers import VisualizationWrapper
+from stable_baselines3 import SAC
+from stable_baselines3.common.utils import set_random_seed
+from tarski import fstrips as fs
+
+project_root = os.path.dirname(os.path.abspath(__file__))
+config_file = os.path.join(project_root, 'config.yaml')
+
+def load_config(config_file):
+    with open(config_file, 'r') as file:
+        config = yaml.safe_load(file)
+    return config
+
+def load_detector(config:dict, domain:str, env:MujocoEnv) -> detection.detector.Detector:
+    """load the detector based on the domain specified in the config file
+    Args:
+        config (dict): the configuration dictionary
+        env (MujocoEnv): the underlying environment
+    Returns:
+        Detector: the detector object
+    """
+
+    detector_module = importlib.import_module(config['detection_dir']+'.'+domain+'_detector')
+    camel_case_domain = ''.join([word.capitalize() for word in domain.split('_')])     
+    detector = getattr(detector_module, camel_case_domain+'Detector')
+    return detector(env)
+
+def load_policy(env, path, lr=0.0003, log_dir=None, seed=0):
+    # Load the model
+    set_random_seed(seed, using_cuda=True)
+    model = SAC.load(path, env=env, learning_rate=lr, tensorboard_log=log_dir, seed=seed)
+    return model
+
+def load_env(domain:Union[str, MujocoEnv], config:dict) -> MujocoEnv:
+    """load the simulation environment based on the problem domain specified in the config file
+    """
+    import mimicgen
+    envs = set(suite.ALL_ENVIRONMENTS)
+    # keep only envs that correspond to the different reset distributions from the paper
+    # only keep envs that end with "Novelty"
+    envs = [x for x in envs if x[-7:] == "Novelty"]
+    if config is None:
+        config = load_config(config_file)
+    
+    gym_env = None
+    if isinstance(domain, MujocoEnv):
+        if "cleanup" in domain.__class__.__name__.lower():
+            gym_env = suite.make(
+                env_name = domain.__class__.__name__,
+                **config,
+                controller_configs = load_controller_config(default_controller="OSC_POSE"),
+            )
+        else:
+            gym_env = suite.make(
+                env_name = domain.__class__.__name__,
+                **config,
+                controller_configs = load_controller_config(default_controller="OSC_POSITION"),
+            )
+    elif isinstance(domain, str):
+        # find the novelty env i.e. the post-novelty env whose name contains the domain
+        lower_case_domain = domain.lower()
+        for env_name in envs:
+            if (lower_case_domain in env_name.lower() or domain in env_name) and 'pre_novelty' not in env_name.lower():
+                if domain == "cleanup":
+                    gym_env = suite.make(
+                        env_name = env_name,
+                        **config,
+                        controller_configs = load_controller_config(default_controller="OSC_POSE"),
+                    )
+                else:
+                    gym_env = suite.make(
+                        env_name = env_name,
+                        **config,
+                        controller_configs = load_controller_config(default_controller="OSC_POSITION"),
+                    )
+                break
+    
+    if gym_env is not None:
+        # set up the viewer for rendering
+        if config['has_renderer']:
+            # Wrap this environment in a visualization wrapper
+            gym_env = VisualizationWrapper(gym_env, indicator_configs=None)
+            gym_env.viewer.set_camera(camera_id=0)
+    else:
+        raise ValueError(f"Environment with domain {domain} not found")
+    return gym_env
+
+def deepcopy_env(env, simultion_config:dict) -> MujocoEnv:
+    saved_sim_state = env.sim.get_state()
+    env_copy = load_env(env, simultion_config)
+    env_copy.reset()
+    env_copy.sim.set_state(saved_sim_state)
+    env_copy.sim.forward()
+    return env_copy
+
+def load_executor(config:dict, domain:str, grounded_operator:Union[str, fs.Action]):
+    """load the executor based on the domain and the grounded operator
+
+    Args:
+        config (dict): the configuration dictionary containing the configuration parameters for execution and planning
+        grounded_operator (Union[str, fs.Action]): the grounded operator
+
+    Returns:
+        Executor: the executor object for the grounded operator
+    """
+    # find the current root directory
+    executor_module = importlib.import_module(f"{config['execution_dir']}.{domain}.{domain}_executor")
+
+    EXECUTORS = getattr(executor_module, domain.upper()+'_EXECUTORS')
+    grounded_operator_name, _ = extract_name_params_from_grounded(grounded_operator.ident())
+    # unpickle the .pkl files in the domain executor directory which is where the learned executors are stored
+    learned_executors = {}
+    for file in os.listdir(f"{config['execution_dir']}{os.sep}{domain}"):
+        if file.endswith(".pkl"):
+            with open(file, 'rb') as f:
+                learned_executor = dill.load(f)
+                learned_executors[learned_executor.name] = learned_executor
+    
+    # check if the operator has an executor
+    executor = None
+    if grounded_operator_name in EXECUTORS: # operator has an executor
+        executor = EXECUTORS[grounded_operator_name]
+    elif grounded_operator_name in learned_executors: # operator has a learned executor
+        executor = learned_executors[grounded_operator_name]
+    else: # operator does not have an executor
+        return None
+    return executor
+
+def choose_subgoal(grounded_op) -> fs.SingleEffect:
+    """Prints out the subgoals in the grounded operator and returns the selected
+       subgoal
+
+    Args:
+        grounded_op (fs.Action): the grounded operator
+    Returns:
+        fs.SingleEffect: the selected subgoal
+    """
+    # select the subgoal for the operator
+    print("Here is a list of subgoals in the grounded operator:\n")
+    for i, subgoal in enumerate(grounded_op.effects):
+        print(f"{i}. {subgoal}")
+    subgoal_index = int(input("Enter the index of the subgoal you want to choose: "))
+    return grounded_op.effects[subgoal_index]
+
+def find_grounded_operator_from_plan(plan:List[fs.Action], operator_name:str) -> fs.Action:
+    """find the grounded operator from the plan given the operator name
+
+    Args:
+        plan (List[fs.Action]): the plan
+        operator_name (str): the operator name
+
+    Returns:
+        fs.Action: the grounded operator
+    """
+    for op in plan:
+        if operator_name in op.name:
+            return op
+    return None
+
+def find_file_with_largest_number(directory, name) -> Tuple[str, int]:
+    """Find the file with the largest number in the name in the directory
+
+    Args:
+        directory (str): the directory to search
+        name (str): the file name to search for
+
+    Returns:
+        Tuple[str, int]: the path to the file with the largest number and the largest number
+    """
+    largest_file = None
+    largest_number = None
+    # return None if the directory does not exist
+    if not os.path.exists(directory):
+        return directory, None
+    for filename in os.listdir(directory):
+        if name not in filename:
+            continue
+        # Extract number at the end of the file name (e.g., file123)
+        match = re.search(r'(\d+)(?=\.\w+$)', filename)
+        if match:
+            number = int(match.group(1))
+            # Update largest file and number if this one is larger
+            if largest_number is None or number > largest_number:
+                largest_number = number
+                largest_file = filename
+    if largest_file is None:
+        return directory, None
+    return directory+os.sep+largest_file, largest_number
+
+
+def load_plan(config):
+    """If the plan has been generated and saved, load the plan from the planning/PDDL directory according to the config
+    Args:
+        config (dict): the configuration dictionary containing configuration parameters for planning
+    """
+    # search the `planning_dir` for the latest goal node pkl file i.e. the one with the largest number
+    
+    goal_node_pkl = config['planning_dir'] + os.sep + config['planning_goal_node']
+    if goal_node_pkl is None:
+        return None
+    goal_node:planning.planning_utils.SearchNode = planning.planning_utils.unpickle_goal_node(goal_node_pkl)
+    plan:List[fs.Action] = planning.planning_utils.reverse_engineer_plan(goal_node)
+    return plan
+
+def load_csv(file_path:str) -> pd.DataFrame:
+    """load a csv file into a pandas dataframe
+
+    Args:
+        file_path (str): the path to the csv file
+
+    Returns:
+        pd.DataFrame: the pandas dataframe
+    """
+    return pd.read_csv(file_path)
+
+def plot_heatmap(two_d_array:list, values:list, title:str, x_label:str, y_label:str, x_ticks:list, y_ticks:list):
+    """plot a heatmap given a 2D array
+
+    Args:
+        2d_array (List): the 2D array to plot
+        values (List): the values to plot
+        title (str): the title of the plot
+        x_label (str): the x-axis label
+        y_label (str): the y-axis label
+        x_ticks (List): the x-axis ticks
+        y_ticks (List): the y-axis ticks
+    """
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    im = ax.imshow(two_d_array)
+
+    # We want to show all ticks...
+    ax.set_xticks(np.arange(len(x_ticks)))
+    ax.set_yticks(np.arange(len(y_ticks)))
+    # ... and label them with the respective list entries
+    ax.set_xticklabels(x_ticks)
+    ax.set_yticklabels(y_ticks)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(y_ticks)):
+        for j in range(len(x_ticks)):
+            text = ax.text(j, i, values[i][j],
+                           ha="center", va="center", color="w")
+
+    ax.set_title(title)
+    fig.tight_layout()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.show()
+
+def find_parentheses(s:str) -> Tuple[int, int]:
+        """returns the indices of the first opening and matching closing parentheses
+
+        Args:
+            s (str): the string to search
+
+        Returns:
+            Tuple[int, int]: the indices of the first opening and matching closing parentheses
+        """
+        count = 0
+        start = 0
+        for i, c in enumerate(s):
+            if c == '(':
+                if count == 0:
+                    start = i
+                count += 1
+            elif c == ')':
+                count -= 1
+                if count == 0:
+                    return start + 1, i
+        return -1, -1
+
+def split_by_parentheses(s:str, type='operator_predicates') -> List[str]:
+    """splits a string by parentheses
+
+    Args:
+        s (str): the string to split
+
+    Returns:
+        List[str]: the list of strings
+    """
+    if type=='operator_predicates':
+        if s.find('and') == -1:
+            return [s]
+    parts = []
+    start = 0
+    while start < len(s):
+        part_start, part_end = find_parentheses(s[start:])
+        if part_start == -1:
+            break
+        # add the part inside the parenthesis
+        parts.append(s[start + part_start:start + part_end])
+        start += part_end + 1
+    return parts
+
+@tool
+def verify_predicates_domain(old_domain:str, new_domain:str, structure="pddl"):
+    """Given two PDDL domain files, this function checks whether the two domain files contain the same predicates. If not, it raises a ValueError with the difference in predicates.
+
+    Args:
+        old_domain (str): old domain file name
+        new_domain (str): new domain file name
+        structure (str, optional): Structure of the domain files. Defaults to "pddl".
+    """
+    planning_dir = load_config(config_file)["planning_dir"]
+    old_domain_path =  planning_dir + os.sep + old_domain
+    new_domain_path = planning_dir + os.sep + new_domain
+    if structure == "pddl":
+        with open(old_domain_path, 'r') as file:
+            old_domain_content = file.read()
+        with open(new_domain_path, 'r') as file:
+            new_domain_content = file.read()
+        old_predicates = set(extract_predicates(old_domain_content))
+        new_predicates = set(extract_predicates(new_domain_content))
+        assert old_predicates == new_predicates, f"Predicates in the new domain file are different from the old domain file. The difference is {old_predicates - new_predicates}. Please make sure the new domain file contains the same predicates from the old domain file."
+    return True
+
+
+@tool
+def verify_predicates_problem(domain:str, problem:str, structure="pddl"):
+    """Given a PDDL domain and problem file, this function checks whether the problem file only contains predicates that are in the domain file
+
+    Args:
+        domain (str): _description_
+        problem (str): _description_
+        structure (str, optional): _description_. Defaults to "pddl".
+    """
+    planning_dir = load_config(config_file)["planning_dir"]
+    domain_path =  planning_dir + os.sep + domain 
+    problem_path = planning_dir + os.sep + problem
+    if structure == "pddl":
+        with open(domain_path, 'r') as file:
+            domain_content = file.read()
+        with open(problem_path, 'r') as file:
+            problem_content = file.read()
+        domain_predicates = set(extract_predicates(domain_content))
+        problem_predicates = set(extract_predicates(problem_content, file_type='problem'))
+        assert check_predicates_subset(problem_predicates, domain_predicates), f"Predicates in the problem file are not a subset of the domain file. The difference is {problem_predicates - domain_predicates}. Please make sure the problem file only contains predicates that are in the domain file."
+    return True
+
+@tool
+def call_planner(domain:str, problem:str, structure="pddl"):
+    """Given a domain and a problem file, this function return the ffmetric Planner output in the action format
+
+    Args:
+        domain (str): domain file name
+        problem (str): problem file name
+        structure (str, optional): The type of the files for planning. Defaults to "pddl".
+
+    Returns:
+        _type_: _description_
+    """
+    planning_dir = load_config(config_file)["planning_dir"]
+    domain_path =  planning_dir + os.sep + domain
+    problem_path = planning_dir + os.sep + problem
+    if structure == "pddl":
+        run_script = f"{planning_dir}/Metric-FF-v2.1/./ff -o {domain_path} -f {problem_path} -s 0"
+        output = subprocess.getoutput(run_script)
+        
+        if "unsolvable" in output or "goal can be simplified to FALSE" in output: # unsolvable
+            return "the planner did not find a plan given the problem specification in the problem file and available actions in the domain file. Please double check the actions in the domain file.", []
+        elif 'ff: found legal plan as follows\n' not in output: # symbolic planning specifications have errors
+            return "The planner failed due to errors in the domain and/or problem specifications. Please double check the syntax and semantics in the domain and problem files:\n{}".format(output), []
+        try:
+            output = output.split('ff: found legal plan as follows\n')[1]
+            output = output.split('\ntime spent:')[0]
+            # Remove empty lines
+            output = os.linesep.join([s for s in output.splitlines() if s])
+        except Exception as e:
+            return "The planner failed.\nThe output of the planner was:\n{}".format(output), []
+
+        plan, _ = _output_to_plan(output, structure=structure)
+        return "successfully found a plan", plan
+    elif structure == "hddl":
+        run_script = f"{planning_dir}/lilotane/build/lilotane {domain_path} {problem_path} -v=0 -cs"# | cut -d' ' -f2- | sed 1,2d | head -n -2" # > + sub_plan_name
+        output = subprocess.getoutput(run_script)
+        #TODO：implement logic for processing the output
+        return "planner output processing not implemented yet", []
+
+
+@tool          
+def read_file(file_path:str):
+    """read the file from the given file_path
+    """
+    # read the file from the given file_path
+    try:
+        with open(file_path, 'r') as file:
+            file_content = file.read()
+            return file_content
+    except Exception as e:
+        return e
+
+@tool
+def write_file(file_path:str, content:str):
+    """write the `content` to file_path"""
+    try:
+        with open(file_path, 'w') as file:
+            file.write(content)
+            return True
+    except Exception as e:
+        return e
+
+def extract_name_params_from_grounded(grounded_operator:str):
+    """extract the name and parameters from a grounded operator such as `pick-up-from-tabletop(mug1, table1, gripper1)`
+
+    Args:
+        grounded_operator (str): the grounded operator
+    """
+    # extract the name
+    name = grounded_operator.split('(')[0]
+    # extract the parameters into a list
+    params = grounded_operator.split('(')[1].replace(')', '').split(', ')
+    return name, params
+
+
+def parse_pddl_types(pddl_content):
+    # Regular expression to match the :types section
+    types_section_pattern = re.compile(r'\(:types\s+(.*?)\s+\)', re.DOTALL)
+    match = types_section_pattern.search(pddl_content)
+    
+    if not match:
+        raise ValueError("No :types section found in the PDDL content.")
+    
+    types_section = match.group(1).strip()
+    
+    # Split the types section into lines and parse each line
+    types_lines = types_section.split('\n')
+    types_hierarchy = {}
+    
+    for line in types_lines:
+        line = line.strip()
+        if '-' in line:
+            types, parent = line.split('-')
+            parent = parent.strip()
+            types = [t.strip() for t in types.split()]
+        else:
+            types = [t.strip() for t in line.split()]
+            parent = None
+        
+        for t in types:
+            if parent:
+                if parent not in types_hierarchy:
+                    types_hierarchy[parent] = []
+                types_hierarchy[parent].append(t)
+            else:
+                if t not in types_hierarchy:
+                    types_hierarchy[t] = []
+    
+    return types_hierarchy
+
+def build_hierarchical_json(types_hierarchy):
+    def build_tree(node):
+        if node not in types_hierarchy or not types_hierarchy[node]:
+            return {}
+        return {child: build_tree(child) for child in types_hierarchy[node]}
+    
+    root_nodes = [node for node in types_hierarchy if not any(node in children for children in types_hierarchy.values())]
+    hierarchical_json = {root: build_tree(root) for root in root_nodes}
+    
+    return hierarchical_json
+
+
+def check_predicates_subset(problem_predicates, domain_predicates):
+    # Parse predicates
+    parsed_problem_predicates = {parse_predicate(pred, grounded=True) for pred in problem_predicates}
+    parsed_domain_predicates = {parse_predicate(pred) for pred in domain_predicates}
+    
+    # check if the problem_predicates are a subset of the domain_predicates by comparing the name of each predicate and the number of arguments
+    return parsed_problem_predicates.issubset(parsed_domain_predicates)
+
+
+def parse_predicate(predicate, grounded=False):
+    """
+    Parse a predicate string to extract its name and the number of arguments.
+    Example: 'holding ?obj - holdable' -> ('holding', 1)
+    Example: 'not (free gripper)' -> ('free', 1)
+    """
+    # replace parentheses with spaces and split the predicate string
+    predicate = predicate.replace('(', '').replace(')', '')
+    parts = predicate.split()
+    name = parts[0]
+    if name == 'not':
+        parts = parts[1:]
+        name = parts[0]
+    # count the number of arguments in a predicate like '(free gripper)'
+    if grounded:
+        num_args = len(parts) - 1
+    else:
+        num_args = len([part for part in parts if part.startswith('?')])
+    return (name, num_args)
+
+def parse_ground_predicate(predicate:str, problem_objects:dict) -> dict:
+    """parse a ground predicate string to extract its name and arguments
+
+    Args:
+        predicate (str): a ground predicate string in lisp format
+        problem_objects (dict): a dictionary of objects in the problem file
+    Returns:
+        dict: dictionary containing the predicate name, value and arguments
+    """
+    def find_arg_type(arg_name:str, problem_objects:dict) -> str:
+        for obj_type, obj_list in problem_objects.items():
+            if arg_name in obj_list:
+                return obj_type
+        return None
+    
+    predicate = predicate.replace('(', '').replace(')', '')
+    parts = predicate.split()
+    name = parts[0]
+    val = True
+    arg_start_index = 1
+    if name == 'not':
+        name = parts[1]
+        val = False
+        arg_start_index = 2
+    args = {}
+    for i in range(arg_start_index, len(parts)):
+        arg_name = parts[i]
+        arg_type = find_arg_type(arg_name, problem_objects)
+        args[arg_name] = arg_type
+    return {'name': name, 'value': val, 'args': args}
+
+def extract_predicates(file_content, file_type='domain', scrape_action_conditions=False) -> List[str]:
+    """extracts predicates from a symbolic planning file
+
+    Args:
+        file_content (str): content of the symbolic planning file
+        file_type (str, optional): type of the file. Defaults to 'domain'.
+        check_action_conditions (bool, optional): whether to scrape the predicates in actions preconditions and effects. Defaults to False.
+
+    Returns:
+        list: list of extracted predicates
+    """
+    if file_type == 'domain':
+        start_index = file_content.find("(:predicates")
+    else:
+        start_index = file_content.find("(:init")
+        scrape_action_conditions = False
+
+    # find the next matching ')' after the start_index
+    stack = []
+    end_index = start_index + 1
+    while end_index < len(file_content):
+        if file_content[end_index] == '(':
+            stack.append('(')
+        elif file_content[end_index] == ')':
+            if len(stack) == 0:
+                break
+            stack.pop()
+        end_index += 1
+    if len(stack) > 0:
+        raise ValueError("Mismatched parentheses in file_content")
+    
+    predicates_str = file_content[start_index:end_index+1]
+    # remove eight spaces before predicates
+    predicates_str = predicates_str.replace("        ", "")
+    predicates_str = predicates_str.replace("\t", "")
+    predicates = predicates_str.split("\n")[1:-1]
+
+    if scrape_action_conditions: # extract predicates from action preconditions and effects
+        action_conditions = file_content.split("(:action")
+    return predicates
+
+
+def _output_to_plan(output, structure):
+    '''
+    Helper function to perform regex on the output from the planner.
+    ### I/P: Takes in the ffmetric output and
+    ### O/P: converts it to a action sequence list.
+    '''
+    if structure == "pddl":
+        action_set = []
+        for action in output.split("\n"):
+            #if action.startswith('step'):
+            try:
+                action_set.append(''.join(action.split(": ")[1]))
+            except IndexError:
+                return False, False
+        
+        # convert the action set to the actions permissable in the domain
+        game_action_set = copy.deepcopy(action_set)
+        return action_set, game_action_set
+    return [], []
+
+
+
+def save_agent_view_image(image:np.array):
+    """Save the image of the agent's view to a file
+
+    Args:
+        image (np.array): image of the agent's view
+    """
+    config = load_config(config_file)
+    image = Image.fromarray(image)
+    # PIL image is flipped, so flip it back
+    image = image.transpose(Image.FLIP_TOP_BOTTOM)
+    image.save(config['image_path'])
+
+def encode_image(image_path:str):
+    """Encode the image at `image_path`
+
+    Args:
+        image_path (str): path to the image
+    """
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
+
+def extract_type_parent_mapping(pddl_domain_file):
+    """Extract the types from the :types section of a PDDL domain file. The types are extracted as a dictionary where the key is the type and the value is the parent type. 
+
+    Args:
+        pddl_domain_file (str): path to the domain file
+
+    Returns:
+        dict: type -> parent_type mapping
+    """
+    type_hierarchy = {}
+    
+    with open(pddl_domain_file, 'r') as file:
+        content = file.read()
+        
+        # Extract the :types section using regex
+        types_section = re.findall(r":types(.*?)(?=\))", content, re.DOTALL)
+        
+        if types_section:
+            # Split by newlines to get the individual lines in the types section
+            lines = types_section[0].strip().split("\n")
+
+            for line in lines:
+                # Split by " - " to get the child and parent types
+                if " - " in line:
+                    children, parent = line.split(" - ")
+                    children = children.split()
+                    for child in children:
+                        type_hierarchy[child.strip()] = parent.strip()
+                else:
+                    child = line.strip()
+                    parent = None
+                    type_hierarchy[child.strip()] = parent
+            
+    
+    return type_hierarchy
+
+def matches_type(obj_type:str, expected_type:str, type_parent_mapping:dict) -> bool:
+    """Given an object and an expected type, this function checks if the object matches the expected type by traversing the type hierarchy.
+
+    Args:
+        obj_type (str): type of the object   
+        expected_type (str): expected type
+        type_parent_mapping (dict): mapping from type to parent type
+
+    Returns:
+        bool: True if the object matches the expected type, False otherwise
+    """
+    current_type = obj_type
+    while current_type:
+        if current_type == expected_type:
+            return True
+        current_type = type_parent_mapping.get(current_type)
+    return False
+
+def extract_objects_from_problem(problem_file:str) -> dict:
+    """Extracts the objects from a problem file in lisp format.
+
+    Args:
+        problem_file (str): the path to the problem file
+
+    Returns:
+        dict: object to type mapping
+    """
+    res = dict()
+    with open(problem_file, 'r') as file:
+        content = file.read()
+        objects_section = re.findall(r":objects(.*?)(?=\))", content, re.DOTALL)
+        if objects_section:
+            lines = objects_section[0].strip().split("\n")
+            for line in lines:
+                # split the object into objects before ' - ' and its type after ' - '
+                objs, obj_type = line.split(" - ")
+                res[obj_type] = [obj.strip() for obj in objs.split()]
+        return res
+
+def extract_ground_predicates_from_init(problem_file:str) -> List[dict]:
+    """Extract the ground applicable predicates from the `:init` section of a problem file.` Example:
+    {
+        "name": "in",
+        "value": true,
+        "args": {
+            "?coffee-pod1": "coffee-pod",
+            "?drawer1": "drawer"
+        }
+    },
+
+    Args:
+        problem_file (str): path to the problem file
+    Returns:
+        list: list of ground predicates
+    """
+    # get the problem objects
+    problem_objects = extract_objects_from_problem(problem_file)
+    # read the file content
+    with open(problem_file, 'r') as file:
+        content = file.read()
+        # extract the :init section using regex
+        preds:List[str] = extract_predicates(content, file_type='problem')
+        res = [parse_ground_predicate(pred, problem_objects) for pred in preds]
+    return res
+
+
+def extract_predicates_from_domain(domain_file:str) -> dict:
+    """Extracts the predicates from a domain file in list format.
+
+    Args:
+        domain_file (str): file path
+
+    Returns:
+        list: dict
+    """
+    res = dict()
+    # Read the domain file
+    with open(domain_file, 'r') as file:
+        content = file.read()
+        # Extract the predicates
+        extracted_predicates = extract_predicates(content)
+        for pred in extracted_predicates:
+            pred_dict = extract_predicate(pred)
+            res[pred_dict['name']] = pred_dict
+        return res
+
+
+def extract_predicate(predicate_str_lisp:str) -> dict:
+    """Given a predicate in lisp format, this function extracts the predicate name and arguments and returns them as a dictionary. Example: '(holding ?obj - holdable)' -> {'name': 'holding', 'args': {'?obj': 'holdable'}}
+
+    Args:
+        predicate_str_lisp (str): the predicate in lisp format
+
+    Returns:
+        dict: dictionary containing the predicate name and arguments
+    """
+    predicate_str_lisp = predicate_str_lisp.replace('(', '').replace(')', '')
+    parts = predicate_str_lisp.split()
+    name = parts[0]
+    args = {}
+    for i in range(1, len(parts)):
+        if parts[i].startswith('?'):
+            arg_name = parts[i]
+            arg_type = parts[i+2]
+            args[arg_name] = arg_type
+    return {'name': name, 'args': args}
+
+def find_applicable_predicates(type_name:str, type_parent_mapping:dict, predicates:List[dict]) -> set:
+    """Given a type name, this function finds the applicable predicates for that type by traversing the type hierarchy.
+
+    Args:
+        type_name (str): the name of the type
+        type_parent_mapping (dict): mapping from type to parent type
+        predicates (list): a list of predicates in dictionary format
+
+    Returns:
+        set: the set of all applicable predicates
+    """
+    # Initialize a set to store applicable predicates
+    applicable_predicates = []
+    
+    # Function to traverse the type hierarchy
+    def traverse_type_hierarchy(current_type):
+        # Iterate through all predicates
+        for predicate in predicates.values():
+            for arg, arg_type in predicate['args'].items():
+                if arg_type == current_type:
+                    applicable_pred = copy.deepcopy(predicate)
+                    applicable_pred['args'][arg] = type_name
+                    applicable_predicates.append(applicable_pred)
+        
+        # Recursively traverse the parent type
+        parent_type = type_parent_mapping.get(current_type)
+        if parent_type:
+            traverse_type_hierarchy(parent_type)
+    
+    # Start traversal from the given type
+    traverse_type_hierarchy(type_name)
+    
+    return applicable_predicates
+
+def extract_applicable_truth_assignments(problem_file:str, applicable_predicates:set) -> dict:
+    """Given the problem file and a set of applicable predicates, this function extracts the truth assignments for the applicable predicates from the problem file
+
+    Args:
+        problem_file (str): _description_
+        applicable_predicates (set): _description_
+
+    Returns:
+        dict: _description_
+    """
+    pass
+
+
+def generate_complete_value_assignments_relevant_to_obj(obj:str, obj_type:str, applicable_predicates:List[dict], ground_init_preds:List[dict],problem_objects:dict) -> List[dict]:
+    """Given an object, a list of applicable predicates, the ground init predicates, and the problem objects, this function generates the complete value assignments to the applicable predicates
+
+    Args:
+        obj (str): the object
+        onj_type (str): the type of the object
+        applicable_predicates (List[dict]): the list of applicable predicates for the object
+        ground_init_preds (List[dict]): the ground init predicates from a problem file
+        problem_objects (dict): the objects in the problem file
+
+    Returns:
+        List[dict]: value assignment to the applicable predicates
+    """
+    # get the type parent mapping
+    type_parent_mapping = extract_type_parent_mapping('Planning/PDDL/llm_success_trial1_domain.pddl')
+    # iterate over the applicable predicates
+    res = []
+    for pred in applicable_predicates:
+        true_pred = {'name': pred['name'], 'value': True, 'args': {}}
+        false_pred = {'name': pred['name'], 'value': False, 'args': {}}
+        # fill the object in the appropriate argument
+        args = pred['args']
+        for arg, arg_type in args.items():
+            if arg_type == obj_type:
+                true_pred['args'][obj] = arg_type
+                false_pred['args'][obj] = arg_type
+            else: # find an object of the type in the problem objects
+
+                for obj_type in problem_objects:
+                    if matches_type(obj_type, arg_type, type_parent_mapping):
+                    # iterate over the actual objects for each obj type
+                        detected_objs = problem_objects[obj_type]
+                        for detected_obj in detected_objs:
+                            true_pred['args'][detected_obj] = obj_type
+                            false_pred['args'][detected_obj] = obj_type
+                            break
+
+
+def save_to_json(hierarchy, json_file):
+    with open(json_file, 'w') as file:
+        json.dump(hierarchy, file, indent=4)
+
+if __name__ == "__main__":
+    # type_parent_mapping = extract_type_parent_mapping('Planning/PDDL/llm_success_trial1_domain.pddl')
+    # save_to_json(type_parent_mapping, 'type_parent_mapping.json')
+    # preds = extract_predicates_from_domain('Planning/PDDL/llm_success_trial1_domain.pddl')
+    # save_to_json(preds, 'predicates.json')
+    # applicable_preds = find_applicable_predicates('drawer', type_parent_mapping, preds)
+    # save_to_json(applicable_preds, 'applicable_preds.json')
+
+    # objects = extract_objects_from_problem('Planning/PDDL/llm_success_trial1_problem.pddl')
+    # save_to_json(objects, 'problem_objects.json')
+
+    ground_preds = extract_ground_predicates_from_init('Planning/PDDL/llm_success_trial1_problem.pddl')
+    save_to_json(ground_preds, 'ground_init_preds.json')
+
+    
+

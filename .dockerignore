@@ -1,0 +1,12 @@
+**/policies/
+**/__pycache__/
+**/*.pkl
+**/*.pt
+**/*.npy
+**/checkpoints/
+**/seed_*/
+**/buffer*/
+**/tensorboard/
+**/logs/
+*.tar
+*.gz
