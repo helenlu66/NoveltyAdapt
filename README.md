@@ -1,5 +1,24 @@
 # OpLearn
 
+## Pretrained policy checkpoints
+
+Model checkpoints are publicly available on Hugging Face:
+[helenlu94/NoveltyAdapt-policies](https://huggingface.co/helenlu94/NoveltyAdapt-policies).
+
+The Hugging Face repository preserves the subfolder structure under
+`learning/policies/`, including the `coffee_box`, `coffee_drawer`, `kitchen`, and
+`nut_assembly` domains. It contains `final_model.zip`, `best_model.zip`, and
+`recent_model.zip` checkpoints; training logs, replay buffers, and executor files
+are excluded.
+
+To download the checkpoints into the expected location, run from this repository's
+root:
+
+```bash
+pip install huggingface_hub
+hf download helenlu94/NoveltyAdapt-policies --include "*.zip" --local-dir learning/policies
+```
+
 ## Dependencies
 
 Clone MimicGen in /OpLearn directory
